@@ -2,8 +2,12 @@ import * as tf from '@tensorflow/tfjs'
 import Plotly from 'plotly.js'
 window.tf = tf
 
-const xs = tf.tensor1d([0, 1, 2, 3])
-const ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9])
+//Plotly.newPlot('ideal')
+
+// const xs = tf.tensor1d([0, 1, 2, 3])
+// const ys = tf.tensor1d([1.1, 5.9, 16.8, 33.9])
+const xs = tf.tensor1d([ 0, 1, 2, 3])
+const ys = tf.tensor1d([ 10.2, 16.1, 24.8, 36.3])
 
 const a = tf.scalar(Math.random()).variable()
 const b = tf.scalar(Math.random()).variable()
@@ -20,7 +24,7 @@ const loss = (pred, label) => {
 const train = () => {
   const learningRate = 0.01
   const optimizer = tf.train.sgd(learningRate)
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 500; i++) {
     optimizer.minimize(() => loss(f(xs), ys))
   }
 }
@@ -39,3 +43,5 @@ preds.forEach((pred, i) => {
   console.log(`x: ${i}, pred: ${pred}`)
 })
 Plotly.newPlot('main', [plotData])
+
+// xsを増やした時どうなるのか？
